@@ -1,13 +1,13 @@
 import "../../../App.css";
 
-export const Card = () => {
-  if (true) {
+export const Card = ({ word, id, isVisible, matched }) => {
+  if (!isVisible) {
     return (
       <div
         className="d-flex border image-card justify-content-center
       align-items-center"
       >
-        word
+        {word}
       </div>
     );
   }
