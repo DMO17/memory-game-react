@@ -1,14 +1,13 @@
 import "./App.css";
-import { CardGrid } from "./components/CardGrid";
+
 import { Header } from "./components/Header";
-import { Score } from "./components/Score";
+import { GameContainer } from "./containers/GameContainer";
 
 function App() {
   return (
     <div>
       <Header />
-      <Score />
-      <CardGrid />
+      <GameContainer />
     </div>
   );
 }
