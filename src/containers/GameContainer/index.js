@@ -109,6 +109,19 @@ export const GameContainer = () => {
 
   const startTheGame = (event) => setStartGame(true);
 
+  const onClick = (event) => {
+    const { id } = event.currentTarget;
+
+    const newCards = cards.map((card) => {
+      if (card.id === id) {
+        card.isVisible = true;
+      }
+      return card;
+    });
+
+    return setCards(newCards);
+  };
+
   return (
     <div>
       <div className="text-center">
@@ -124,7 +137,7 @@ export const GameContainer = () => {
         <>
           <Score numberOfFailedMatches={numberOfFailedMatches} />
 
-          <CardGrid cards={cards} dimension={4} />
+          <CardGrid cards={cards} dimension={4} onClick={onClick} />
         </>
       )}
     </div>

@@ -2,7 +2,7 @@ import "../../App.css";
 
 import { Card } from "./Card";
 
-export const CardGrid = ({ cards, dimension }) => {
+export const CardGrid = ({ cards, dimension, onClick }) => {
   const cardsToRender = cards.reduce(
     (rows, key, index) =>
       (index % dimension === 0
@@ -20,7 +20,7 @@ export const CardGrid = ({ cards, dimension }) => {
             key={index}
           >
             {row.map((card) => {
-              return <Card {...card} key={card.id} />;
+              return <Card {...card} key={card.id} onClick={onClick} />;
             })}
           </div>
         );
