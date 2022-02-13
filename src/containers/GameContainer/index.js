@@ -106,21 +106,47 @@ export const GameContainer = () => {
   const [cards, setCards] = useState(initialCards);
   const [numberOfFailedMatches, setNumberOfFailedMatches] = useState(0);
   const [startGame, setStartGame] = useState(false);
+  const [firstCard, setFirstCard] = useState({});
+  const [secondCard, setSecondCard] = useState({});
+  const [turn, setTurn] = useState(0);
 
   const startTheGame = (event) => setStartGame(true);
 
+  // useEffect(() => {
+  //   console.log(cards);
+  // }, [cards]);
+
   const onClick = (event) => {
     const { id } = event.currentTarget;
+
+    const cardProperties = cards.find((card) => {
+      return card.id === id;
+    });
+
+    if (turn === 0) {
+      setFirstCard(cardProperties);
+    }
+
+    if (turn === 1) {
+      setSecondCard(cardProperties);
+    }
+
+    if (!cardProperties.isVisible) {
+      setTurn(turn + 1);
+    }
 
     const newCards = cards.map((card) => {
       if (card.id === id) {
         card.isVisible = true;
       }
+
       return card;
     });
 
-    return setCards(newCards);
+    setCards(newCards);
   };
+
+  console.log(turn);
 
   return (
     <div>

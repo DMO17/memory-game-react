@@ -1,4 +1,5 @@
 import "../../App.css";
+import { v4 as uuidv4 } from "uuid";
 
 import { Card } from "./Card";
 
@@ -17,10 +18,10 @@ export const CardGrid = ({ cards, dimension, onClick }) => {
         return (
           <div
             className="d-flex justify-content-center flex-direction-row"
-            key={index}
+            key={uuidv4()}
           >
             {row.map((card) => {
-              return <Card {...card} key={card.id} onClick={onClick} />;
+              return <Card {...card} key={uuidv4()} onClick={onClick} />;
             })}
           </div>
         );
