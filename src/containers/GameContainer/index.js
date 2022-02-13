@@ -112,9 +112,38 @@ export const GameContainer = () => {
 
   const startTheGame = (event) => setStartGame(true);
 
-  // useEffect(() => {
-  //   console.log(cards);
-  // }, [cards]);
+  useEffect(() => {
+    if (turn === 2) {
+      if (firstCard.word === secondCard.word) {
+        const newCards = cards.map((card) => {
+          if (card.id === firstCard.id || card.id === secondCard.id) {
+            card.matched = true;
+          }
+
+          return card;
+        });
+
+        setCards(newCards);
+        setTurn(0);
+        setFirstCard();
+        setSecondCard();
+      } else {
+        const newCards = cards.map((card) => {
+          if (card.id === firstCard.id || card.id === secondCard.id) {
+            card.isVisible = false;
+          }
+
+          return card;
+        });
+
+        setCards(newCards);
+        setTurn(0);
+        setFirstCard();
+        setSecondCard();
+        setNumberOfFailedMatches(numberOfFailedMatches + 1);
+      }
+    }
+  }, [cards, turn, firstCard, secondCard]);
 
   const onClick = (event) => {
     const { id } = event.currentTarget;
@@ -139,7 +168,6 @@ export const GameContainer = () => {
       if (card.id === id) {
         card.isVisible = true;
       }
-
       return card;
     });
 
