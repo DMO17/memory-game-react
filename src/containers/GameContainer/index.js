@@ -105,11 +105,28 @@ const initialCards = [
 export const GameContainer = () => {
   const [cards, setCards] = useState(initialCards);
   const [numberOfFailedMatches, setNumberOfFailedMatches] = useState(0);
+  const [startGame, setStartGame] = useState(false);
+
+  const startTheGame = (event) => setStartGame(true);
 
   return (
     <div>
-      <Score numberOfFailedMatches={numberOfFailedMatches} />
-      <CardGrid cards={cards} dimension={4} />
+      <div className="text-center">
+        <button
+          type="button"
+          className="btn btn-success btn-lg"
+          onClick={startTheGame}
+        >
+          Start Game
+        </button>
+      </div>
+      {startGame && (
+        <>
+          <Score numberOfFailedMatches={numberOfFailedMatches} />
+
+          <CardGrid cards={cards} dimension={4} />
+        </>
+      )}
     </div>
   );
 };
